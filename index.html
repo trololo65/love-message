@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#211a24" />
+  <meta name="description" content="Небольшая история для Яны." />
+  <title>Для Яны — одна маленькая история</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <div class="moon"></div>
+    <div class="stars" id="stars"></div>
+    <div class="haze haze-one"></div>
+    <div class="haze haze-two"></div>
+    <div class="grain"></div>
+  </div>
+
+  <main class="shell">
+    <header class="topbar">
+      <span class="topbar-mark">✦</span>
+      <span class="topbar-label">a little story, just for you</span>
+      <span class="topbar-mark">✦</span>
+    </header>
+
+    <div class="progress" aria-label="Прогресс истории">
+      <span class="progress-line"><span id="progress-fill"></span></span>
+      <span class="progress-count" id="progress-count">01 / 07</span>
+    </div>
+
+    <!-- Этап 1. Вступление -->
+    <section class="stage active" id="stage-intro" data-stage="1">
+      <div class="eyebrow"><span></span> одна маленькая история <span></span></div>
+      <div class="intro-symbol" aria-hidden="true">
+        <span class="symbol-orbit"></span>
+        <span class="symbol-star">✧</span>
+        <span class="symbol-heart">♥</span>
+      </div>
+      <p class="kicker">для Яны</p>
+      <h1>У меня есть кое-что<br /><em>для тебя.</em></h1>
+      <p class="intro-copy">Ничего сложного. Просто несколько воспоминаний,<br class="desktop-break" /> немного музыки и кое-что важное в конце.</p>
+      <div class="button-row intro-buttons">
+        <button class="btn btn-primary" id="btn-yes" type="button">Хорошо, я здесь <span>↗</span></button>
+      </div>
+      <div class="no-zone" id="no-btn-zone">
+        <span class="no-caption" id="no-caption">или попробуй выбрать другой вариант</span>
+        <button class="btn btn-quiet" id="btn-no" type="button">Не сейчас</button>
+      </div>
+      <p class="micro-note">можно не торопиться · здесь всё для тебя</p>
+    </section>
+
+    <!-- Этап 2. Первый вопрос -->
+    <section class="stage" id="stage-quiz-1" data-stage="2" aria-hidden="true">
+      <div class="section-index">I <span>·</span> очевидное</div>
+      <div class="panel">
+        <div class="panel-topline"><span>маленький вопрос</span><span>01 — 02</span></div>
+        <div class="big-ornament" aria-hidden="true">♡</div>
+        <h2>Что я люблю<br /><em>больше всего?</em></h2>
+        <p class="panel-copy">Подумай. Здесь нет подвоха. Почти.</p>
+        <div class="choice-list">
+          <button class="choice" type="button" data-q1="pizza"><span class="choice-letter">A</span><span>Пиццу. Это серьёзный конкурент.</span><span class="choice-arrow">↗</span></button>
+          <button class="choice" type="button" data-q1="sleep"><span class="choice-letter">B</span><span>Сон. Иногда он действительно бесценен.</span><span class="choice-arrow">↗</span></button>
+          <button class="choice choice-special" type="button" data-q1="you"><span class="choice-letter">C</span><span>Тебя, конечно.</span><span class="choice-arrow">↗</span></button>
+        </div>
+        <p class="feedback" id="q1-wrong-msg" role="status" aria-live="polite"></p>
+      </div>
+      <p class="stage-footnote">некоторые ответы не требуют долгих раздумий</p>
+    </section>
+
+    <!-- Этап 3. Внутренняя шутка -->
+    <section class="stage" id="stage-quiz-2" data-stage="3" aria-hidden="true">
+      <div class="section-index">II <span>·</span> наши странности</div>
+      <div class="panel">
+        <div class="panel-topline"><span>ещё один вопрос</span><span>02 — 02</span></div>
+        <div class="big-ornament mirror" aria-hidden="true">☾</div>
+        <h2>Как лучше всего<br /><em>описать нас?</em></h2>
+        <p class="panel-copy">Выбери фразу, которая звучит подозрительно знакомо.</p>
+        <div class="choice-list">
+          <button class="choice" type="button" data-q2="same"><span class="choice-letter">A</span><span>Всегда мыслим одинаково.</span><span class="choice-arrow">↗</span></button>
+          <button class="choice" type="button" data-q2="chaos"><span class="choice-letter">B</span><span>Два котика, один общий хаос.</span><span class="choice-arrow">↗</span></button>
+          <button class="choice" type="button" data-q2="cold"><span class="choice-letter">C</span><span>Вечно мёрзнем — и это уже традиция.</span><span class="choice-arrow">↗</span></button>
+        </div>
+        <div class="reveal-note" id="q2-hint" hidden>
+          <span class="reveal-icon">✧</span>
+          <p id="q2-hint-text"></p>
+          <button class="btn btn-primary btn-small" id="to-rain" type="button">Продолжить <span>→</span></button>
+        </div>
+      </div>
+      <p class="stage-footnote">некоторые совпадения уже сложно считать совпадениями</p>
+    </section>
+
+    <!-- Этап 4. День знакомства под дождём -->
+    <section class="stage" id="stage-rain" data-stage="4" aria-hidden="true">
+      <div class="section-index">III <span>·</span> тот самый день</div>
+      <div class="rain-scene" id="rain-scene">
+        <div class="rain-sky" aria-hidden="true">
+          <div class="rain-glow glow-left"></div>
+          <div class="rain-glow glow-right"></div>
+          <div class="rain-drops" id="rain-drops"></div>
+          <div class="rain-ground"></div>
+          <div class="ground-reflection reflection-one"></div>
+          <div class="ground-reflection reflection-two"></div>
+          <div class="lamp-post"><span></span></div>
+          <div class="umbrella-shape" id="umbrella-shape"><span>♥</span></div>
+        </div>
+        <div class="rain-content">
+          <p class="kicker">воспоминание, которое осталось с нами</p>
+          <h2>Помнишь,<br /><em>тот самый дождь?</em></h2>
+          <p class="rain-copy">В день нашего знакомства мы гуляли под дождём. И теперь в каждом таком вечере для меня есть что-то от того дня — немного прохлады, шум капель и воспоминание о нас.</p>
+          <p class="rain-whisper">Некоторые моменты не нуждаются в фотографиях, чтобы оставаться с нами.</p>
+          <button class="umbrella-button" id="umbrella-button" type="button" aria-pressed="false"><span>☂</span> Укрыться от дождя вместе</button>
+          <p class="umbrella-message" id="umbrella-message" hidden>Мёрзнем, как обычно — зато под одним зонтиком и не по одной. ♥</p>
+        </div>
+        <div class="rain-kittens">
+          <button class="kitten kitten-dark" id="kitten-dark" type="button" aria-label="Погладить чёрного котёнка"><span class="kitten-emoji">🐈‍⬛</span><span class="kitten-name">Нокс</span></button>
+          <button class="kitten kitten-light" id="kitten-light" type="button" aria-label="Погладить светлого котёнка"><span class="kitten-emoji">🐈</span><span class="kitten-name">Луна</span></button>
+          <p class="kitten-note" id="kitten-note" aria-live="polite">Кажется, вот они: два котика и один общий хаос.</p>
+        </div>
+      </div>
+      <div class="next-row rain-next">
+        <span class="small-aside">этот дождь я почему-то помню особенно хорошо</span>
+        <button class="btn btn-primary" id="to-soundtrack" type="button">Дальше <span>→</span></button>
+      </div>
+    </section>
+
+    <!-- Этап 5. Музыкальные открытки -->
+    <section class="stage" id="stage-soundtrack" data-stage="5" aria-hidden="true">
+      <div class="section-index">IV <span>·</span> маленькая музыкальная коллекция</div>
+      <div class="story-heading">
+        <p class="kicker">несколько знакомых названий</p>
+        <h2>Пусть это будет<br /><em>нашим саундтреком.</em></h2>
+        <p>Не рейтинг и не список любимого. Просто музыкальные открытки — у некоторых уже есть своя маленькая история.</p>
+      </div>
+
+      <div class="cover-grid">
+        <article class="cover-card cover-wide">
+          <button class="cover-art cover-photo-button" type="button" data-track="sisyphus" aria-label="Включить Andrew Bird — Sisyphus">
+            <img src="assets/images/andrew-bird-my-finest-work-yet.jpg" alt="Обложка альбома Andrew Bird — My Finest Work Yet" loading="lazy" />
+            <span class="cover-play" aria-hidden="true">▶</span>
+          </button>
+          <div class="cover-meta"><span>ANDREW BIRD</span><strong>Sisyphus</strong><small>показал тебе однажды — и она тебе понравилась</small></div>
+        </article>
+
+        <article class="cover-card">
+          <button class="cover-art cover-photo-button" type="button" data-track="rose" aria-label="Включить Dead Confederate — It Was a Rose">
+            <img src="assets/images/dead-confederate-in-the-marrow.jpg" alt="Обложка альбома Dead Confederate — In the Marrow" loading="lazy" />
+            <span class="cover-play" aria-hidden="true">▶</span>
+          </button>
+          <div class="cover-meta"><span>DEAD CONFEDERATE</span><strong>It Was a Rose</strong><small>показал тебе — и она тебе тоже понравилась</small></div>
+        </article>
+
+        <article class="cover-card">
+          <button class="cover-art cover-photo-button" type="button" data-track="dylan" aria-label="Включить Bob Dylan — Knockin’ on Heaven’s Door">
+            <img src="assets/images/bob-dylan-pat-garrett.jpeg" alt="Обложка саундтрека Pat Garrett and Billy the Kid — Bob Dylan" loading="lazy" />
+            <span class="cover-play" aria-hidden="true">▶</span>
+          </button>
+          <div class="cover-meta"><span>BOB DYLAN</span><strong>Knockin’ on Heaven’s Door</strong><small>оригинальное исполнение</small></div>
+        </article>
+
+        <article class="cover-card">
+          <button class="cover-art cover-photo-button" type="button" data-track="gnr" aria-label="Включить Guns N’ Roses — Knockin’ on Heaven’s Door">
+            <img src="assets/images/guns-n-roses-use-your-illusion-ii.jpg" alt="Обложка альбома Guns N’ Roses — Use Your Illusion II" loading="lazy" />
+            <span class="cover-play" aria-hidden="true">▶</span>
+          </button>
+          <div class="cover-meta"><span>GUNS N’ ROSES</span><strong>Knockin’ on Heaven’s Door</strong><small>другая версия той же песни</small></div>
+        </article>
+
+        <article class="cover-card">
+          <button class="cover-art cover-photo-button" type="button" data-track="kansas" aria-label="Включить Kansas — Carry On Wayward Son">
+            <img src="assets/images/kansas-leftoverture.jpg" alt="Обложка альбома Kansas — Leftoverture" loading="lazy" />
+            <span class="cover-play" aria-hidden="true">▶</span>
+          </button>
+          <div class="cover-meta"><span>KANSAS</span><strong>Carry On Wayward Son</strong><small>дорога Винчестеров</small></div>
+        </article>
+      </div>
+
+      <div class="next-row">
+        <span class="small-aside">можно задержаться и рассмотреть обложки</span>
+        <button class="btn btn-primary" id="to-supernatural" type="button">Дальше <span>→</span></button>
+      </div>
+    </section>
+
+    <!-- Этап 6. Сверхъестественное -->
+    <section class="stage" id="stage-supernatural" data-stage="6" aria-hidden="true">
+      <div class="section-index">V <span>·</span> the road so far</div>
+      <div class="spn-card">
+        <div class="spn-top"><span class="spn-star">✦</span><span>записи охотника · дело № Winchester</span><span class="spn-star">✦</span></div>
+        <p class="kicker">если вдруг за окном что-то шевельнулось</p>
+        <h2>Никакой паники.<br /><em>Звони Винчестерам.</em></h2>
+        <div class="impala-art" aria-hidden="true"><span>1967</span><strong>IMPALA</strong><i>✦</i></div>
+        <p class="spn-copy">В багажнике — всё необходимое, в бардачке — карты, а в дороге обязательно должен играть правильный рок.</p>
+        <div class="song-callout">
+          <span class="callout-label">ROAD SONG</span>
+          <strong>Kansas — Carry On Wayward Son</strong>
+          <span class="callout-note">Потому что без неё дорога Винчестеров уже звучит не так.</span>
+        </div>
+        <div class="hunter-question">
+          <p>Итак, охотница, что первым делом пригодится против призрака?</p>
+          <div class="hunter-options">
+            <button type="button" data-hunt="salt">Соль</button>
+            <button type="button" data-hunt="flowers">Букет цветов</button>
+            <button type="button" data-hunt="wifi">Стабильный Wi-Fi</button>
+          </div>
+          <p class="hunter-feedback" id="hunter-feedback" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="next-row">
+        <span class="small-aside">семейный бизнес Винчестеров одобряет</span>
+        <button class="btn btn-primary" id="to-finale" type="button" disabled>К последней главе <span>→</span></button>
+      </div>
+      <button class="secret-trigger" id="secret-trigger" type="button" aria-label="Секретный знак" aria-expanded="false">✧</button>
+      <p class="secret-message" id="secret-message" hidden>Секретная заметка: два котика, один хаос, вечный холод — и дорога, в которую всё равно стоит отправляться вместе. ♥</p>
+    </section>
+
+    <!-- Этап 7. Письмо -->
+    <section class="stage finale-stage" id="stage-finale" data-stage="7" aria-hidden="true">
+      <div class="section-index">VI <span>·</span> финальная глава</div>
+      <p class="kicker">последняя вещь, которую я хотел показать</p>
+      <h2 class="final-title">Для тебя.<br /><em>Без всяких загадок.</em></h2>
+      <p class="final-instruction" id="envelope-instruction">Нажми на конверт. Внутри — самое важное.</p>
+
+      <div class="envelope-wrap" id="envelope-wrap">
+        <button class="envelope" id="envelope" type="button" aria-label="Открыть письмо" aria-expanded="false">
+          <span class="envelope-back"></span>
+          <span class="letter-preview"><span>Яночке</span><i>с теплом</i></span>
+          <span class="envelope-front"></span>
+          <span class="envelope-flap"></span>
+          <span class="wax-seal">♥</span>
+        </button>
+      </div>
+
+      <div class="letter-content" id="letter-content" aria-live="polite">
+        <div class="letter-paper">
+          <div class="paper-top">✦ &nbsp; несколько слов от меня &nbsp; ✦</div>
+          <p id="letter-text" class="letter-text"></p>
+          <div class="paper-bottom">с любовью <span>♥</span></div>
+        </div>
+      </div>
+      <p class="final-footnote" id="final-footnote" hidden>конец истории — но не нашей. ♥</p>
+    </section>
+
+    <footer class="site-footer"><span>made of moonlight &amp; rainy walks</span><span>♥</span></footer>
+  </main>
+
+  <!-- Один невидимый HTMLAudioElement: переключаем треки без встроенных контролов и перемотки. -->
+  <audio id="story-audio" preload="auto" autoplay playsinline></audio>
+  <div class="audio-status" id="audio-status" aria-live="polite">♫ Lonely Day</div>
+</body>
+</html>
