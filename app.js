@@ -198,13 +198,13 @@ umbrellaButton.addEventListener("click", () => {
 // Котята реагируют на касание — каждый со своим коротким сообщением.
 const kittenNote = document.getElementById("kitten-note");
 document.getElementById("kitten-dark").addEventListener("click", () => {
-  kittenNote.textContent = "Нокс одобряет этот вечер. Но гладить его нужно очень аккуратно. 🐾";
+  kittenNote.textContent = "Микробик одобряет этот вечер. Но гладить его нужно очень аккуратно. 🐾";
   kittenNote.classList.remove("kitten-note-pop");
   void kittenNote.offsetWidth;
   kittenNote.classList.add("kitten-note-pop");
 });
 document.getElementById("kitten-light").addEventListener("click", () => {
-  kittenNote.textContent = "Луна уже устроилась рядом. Кажется, она решила, что прогулка удалась. 🐾";
+  kittenNote.textContent = "Дана уже устроилась рядом. Кажется, она решила, что прогулка удалась. 🐾";
   kittenNote.classList.remove("kitten-note-pop");
   void kittenNote.offsetWidth;
   kittenNote.classList.add("kitten-note-pop");
